@@ -1,13 +1,16 @@
 package com.hotelbeds.supplierintegrations.customers.services;
 
 import com.hotelbeds.supplierintegrations.customers.model.CustomerDTO;
+
 import java.util.List;
-import org.springframework.data.domain.Pageable;
+import java.util.Optional;
 
 public interface CustomerService {
 
-  List<CustomerDTO> listAllCustomers(Pageable pageable);
+    Optional<CustomerDTO> getCustomerByUserName(String userName);
 
-  CustomerDTO saveCustomer(CustomerDTO customerDTO);
+    List<CustomerDTO> listAllCustomers();
+
+    CustomerDTO saveCustomer(CustomerDTO customerDTO);
 
 }

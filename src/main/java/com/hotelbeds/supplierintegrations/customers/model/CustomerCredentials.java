@@ -8,13 +8,10 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDTO {
+public class CustomerCredentials {
 
     @NonNull
     private String userName;
-
-    @NonNull
-    private String ip;
 
     @NonNull
     private String password;

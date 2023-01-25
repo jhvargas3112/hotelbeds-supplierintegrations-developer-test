@@ -1,21 +1,33 @@
 package com.hotelbeds.supplierintegrations.customers.dao.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Entity
 public class Customer {
 
-  @NonNull
-  @Id
-  private String userName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @NonNull
+    private Long id;
 
-  @NonNull
-  private String password;
+    @NonNull
+    private String userName;
+
+    @NonNull
+    private String ip;
+
+    @NonNull
+    private String password;
 
 }
