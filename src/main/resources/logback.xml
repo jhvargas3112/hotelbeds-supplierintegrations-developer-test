@@ -1,0 +1,27 @@
+<configuration>
+
+    <property scope="context" resource="application.properties"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_CONTROLLER" class="ch.qos.logback.core.FileAppender">
+        <file>logs/login_attemps.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <logger name="com.hotelbeds.supplierintegrations.hackertest.detector" level="INFO" additivity="false">
+        <appender-ref ref="FILE_CONTROLLER"/>
+    </logger>
+
+
+</configuration>
