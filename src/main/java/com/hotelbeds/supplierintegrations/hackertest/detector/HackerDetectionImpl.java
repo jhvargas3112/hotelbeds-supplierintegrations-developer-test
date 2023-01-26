@@ -6,10 +6,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HackerDetectionImpl implements HackerDetection {
+
+  private final String loginAttempsLogPath;
+
+  public HackerDetectionImpl(@Value("${login-attemps-log.path}") String loginAttempsLogPath) {
+    this.loginAttempsLogPath = loginAttempsLogPath;
+  }
 
   // O(n) time complexity
   @Override
@@ -20,7 +27,7 @@ public class HackerDetectionImpl implements HackerDetection {
     int failedLoginAttemps = 0;
 
     try {
-      BufferedReader br = new BufferedReader(new FileReader("logs/login_attemps.log"));
+      BufferedReader br = new BufferedReader(new FileReader(loginAttempsLogPath));
 
       long lastTimeStamp = 0L;
 

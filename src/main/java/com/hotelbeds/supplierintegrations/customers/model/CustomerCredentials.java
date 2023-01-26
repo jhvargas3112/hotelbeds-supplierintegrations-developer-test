@@ -10,10 +10,10 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class CustomerCredentials {
 
-    @NonNull
-    private String userName;
+  @NonNull
+  private String userName;
 
-    @NonNull
-    private String password;
+  @NonNull
+  private String password;
 
 }

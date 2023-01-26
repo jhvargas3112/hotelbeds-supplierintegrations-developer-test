@@ -16,23 +16,11 @@
         </encoder>
     </appender>
 
-    <appender name="IPS_BLACK_LIST" class="ch.qos.logback.core.FileAppender">
-        <file>logs/ips_black_list.log</file>
-        <append>true</append>
-        <encoder>
-            <pattern>%msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
     <logger name="com.hotelbeds.supplierintegrations.hackertest.detector.LoginAttempNotifierImpl" level="INFO" additivity="false">
         <appender-ref ref="LOGIN_ATTEMPS_FILE"/>
     </logger>
-    <logger name="com.hotelbeds.supplierintegrations.hackertest.detector.HackerDetectionImpl" level="INFO" additivity="false">
-        <appender-ref ref="IPS_BLACK_LIST"/>
-    </logger>
-
 
 </configuration>

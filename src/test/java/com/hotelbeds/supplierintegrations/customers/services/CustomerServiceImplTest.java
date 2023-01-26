@@ -55,8 +55,7 @@ public class CustomerServiceImplTest {
   }
 
   @Test
-  public void test_when_listCustomers_then_returnAllCustomers() {
-
+  public void when_listCustomers_then_returnAllCustomers() {
     final int EXPECTED_SIZE = 3;
 
     when(customerRepository.findAll()).thenReturn(customers);

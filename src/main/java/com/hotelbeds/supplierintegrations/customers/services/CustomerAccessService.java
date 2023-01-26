@@ -4,6 +4,6 @@ import com.hotelbeds.supplierintegrations.customers.model.CustomerCredentials;
 
 public interface CustomerAccessService {
 
-    boolean login(CustomerCredentials customerCredentials);
+  boolean login(CustomerCredentials customerCredentials);
 
 }

@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RequestMapping("/login")
 public class CustomerAccessController {
-    private final CustomerAccessService customerAccessService;
 
-    @PostMapping
-    public ResponseEntity<LoginAttempResult> login(@RequestBody CustomerCredentials customerCredentials) {
-        return customerAccessService.login(customerCredentials) ?
-                ResponseEntity.ok(LoginAttempResult.SIGNIN_SUCCESS) :
-                ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(LoginAttempResult.SIGNIN_FAILURE);
-    }
+  private final CustomerAccessService customerAccessService;
+
+  @PostMapping
+  public ResponseEntity<LoginAttempResult> login(
+      @RequestBody CustomerCredentials customerCredentials) {
+    return customerAccessService.login(customerCredentials) ?
+        ResponseEntity.ok(LoginAttempResult.SIGNIN_SUCCESS) :
+        ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(LoginAttempResult.SIGNIN_FAILURE);
+  }
 }

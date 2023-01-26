@@ -10,13 +10,13 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class CustomerDTO {
 
-    @NonNull
-    private String userName;
+  @NonNull
+  private String userName;
 
-    @NonNull
-    private String ip;
+  @NonNull
+  private String ip;
 
-    @NonNull
-    private String password;
+  @NonNull
+  private String password;
 
 }
