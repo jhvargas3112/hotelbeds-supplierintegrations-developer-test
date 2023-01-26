@@ -14,10 +14,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-    private final CustomerMapper customerMapper;
-
     private final CustomerRepository customerRepository;
 
+    private final CustomerMapper customerMapper;
 
     @Override
     public Optional<CustomerDTO> getCustomerByUserName(String userName) {

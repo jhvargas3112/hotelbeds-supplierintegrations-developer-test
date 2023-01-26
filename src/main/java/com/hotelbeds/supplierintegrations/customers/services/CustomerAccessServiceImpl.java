@@ -4,8 +4,11 @@ import com.hotelbeds.supplierintegrations.customers.model.CustomerCredentials;
 import com.hotelbeds.supplierintegrations.customers.model.CustomerDTO;
 import com.hotelbeds.supplierintegrations.hackertest.detector.HackerDetection;
 import com.hotelbeds.supplierintegrations.hackertest.detector.LoginAttempNotifier;
+import com.hotelbeds.supplierintegrations.hackertest.detector.LoginAttempNotifierImpl;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,11 +17,14 @@ import java.util.Optional;
 @AllArgsConstructor
 public class CustomerAccessServiceImpl implements CustomerAccessService {
 
+    private static final Logger log = LoggerFactory.getLogger(LoginAttempNotifierImpl.class);
+
     private final CustomerService customerService;
 
     private final LoginAttempNotifier loginAttempNotifier;
 
     private final HackerDetection hackerDetection;
+
 
     @Override
     public boolean login(CustomerCredentials customerCredentials) {
@@ -39,7 +45,10 @@ public class CustomerAccessServiceImpl implements CustomerAccessService {
     }
 
     private void detectPossibleMaliciousActivity(String notification) {
-        hackerDetection.parseLine(notification);
+        String maliciousIP = hackerDetection.parseLine(notification);
+
+        Optional.ofNullable(maliciousIP).ifPresent(ip -> log.info("{}", ip));
+
     }
 
 }

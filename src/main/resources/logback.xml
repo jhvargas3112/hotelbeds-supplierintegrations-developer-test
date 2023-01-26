@@ -8,8 +8,16 @@
         </encoder>
     </appender>
 
-    <appender name="FILE_CONTROLLER" class="ch.qos.logback.core.FileAppender">
+    <appender name="LOGIN_ATTEMPS_FILE" class="ch.qos.logback.core.FileAppender">
         <file>logs/login_attemps.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="IPS_BLACK_LIST" class="ch.qos.logback.core.FileAppender">
+        <file>logs/ips_black_list.log</file>
         <append>true</append>
         <encoder>
             <pattern>%msg%n</pattern>
@@ -19,8 +27,11 @@
     <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </root>
-    <logger name="com.hotelbeds.supplierintegrations.hackertest.detector" level="INFO" additivity="false">
-        <appender-ref ref="FILE_CONTROLLER"/>
+    <logger name="com.hotelbeds.supplierintegrations.hackertest.detector.LoginAttempNotifierImpl" level="INFO" additivity="false">
+        <appender-ref ref="LOGIN_ATTEMPS_FILE"/>
+    </logger>
+    <logger name="com.hotelbeds.supplierintegrations.hackertest.detector.HackerDetectionImpl" level="INFO" additivity="false">
+        <appender-ref ref="IPS_BLACK_LIST"/>
     </logger>
 
 
