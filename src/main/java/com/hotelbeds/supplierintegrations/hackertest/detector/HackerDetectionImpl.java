@@ -52,11 +52,7 @@ public class HackerDetectionImpl implements HackerDetection {
     Collections.reverse(loginAttemps);
 
     for (int i = 0; i < loginAttemps.size() - 1; i++) {
-      LoginAttempDTO loginAttemp = loginAttemps.get(i);
-
-      if (StringUtils.equals(ip, loginAttemp.getIp()) && StringUtils.equals(
-          loginAttemp.getLoginAttempResult().toString(),
-          LoginAttempResult.SIGNIN_FAILURE.name())) {
+      if (isFailedLoginAttempByIp(ip, loginAttemps.get(i))) {
         failedLoginAttemps++;
       }
 
@@ -64,15 +60,17 @@ public class HackerDetectionImpl implements HackerDetection {
           loginAttemps.get(i + 1).getInstant()));
     }
 
-    LoginAttempDTO lastLoginAttemp = loginAttemps.get(loginAttemps.size() - 1);
-
-    if (StringUtils.equals(ip, lastLoginAttemp.getIp()) && StringUtils.equals(
-        lastLoginAttemp.getLoginAttempResult().toString(),
-        LoginAttempResult.SIGNIN_FAILURE.name())) {
+    if (isFailedLoginAttempByIp(ip, loginAttemps.get(loginAttemps.size() - 1))) {
       failedLoginAttemps++;
     }
 
     return (minutes == 5 && failedLoginAttemps >= 5) ? ip : null;
   }
 
+  private boolean isFailedLoginAttempByIp(String ip, LoginAttempDTO loginAttemp) {
+    return StringUtils.equals(ip, loginAttemp.getIp()) && StringUtils.equals(
+        loginAttemp.getLoginAttempResult().toString(), LoginAttempResult.SIGNIN_FAILURE.name());
+  }
+
 }
+
